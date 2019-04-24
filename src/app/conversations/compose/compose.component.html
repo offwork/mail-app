@@ -1,0 +1,30 @@
+<div class="card border-primary mb-3">
+  <div class="card-header">Yeni ileti:</div>
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Title</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="title"
+          required
+        />
+        <span
+          *ngIf="
+            form.get('title').touched && form.hasError('required', 'title')
+          "
+        ></span>
+      </div>
+      <div class="form-group">
+        <label>Body</label>
+        <textarea
+          class="form-control"
+          formControlName="body"
+          rows="3"
+        ></textarea>
+      </div>
+      <button type="submit" [disabled]="form.invalid">Reply</button>
+    </form>
+  </div>
+</div>
