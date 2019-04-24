@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import {
   ConversationComponent,
   ConversationsComponent,
@@ -10,7 +9,11 @@ import {
 } from './conversations';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/inbox' },
+  { path: '', pathMatch: 'full', redirectTo: '/drafts' },
+  {
+    path: 'spam',
+    loadChildren: './spam/spam.module#SpamModule'
+  },
   {
     path: ':folder',
     children: [
@@ -49,7 +52,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
+  imports: [RouterModule.forRoot(routes /*, { enableTracing: true } */)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
